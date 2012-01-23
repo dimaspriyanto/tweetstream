@@ -129,7 +129,7 @@ module TweetStream
 
     # Make a call to the userstream api for currently authenticated user
     def sitestream(twitter_uids = [], &block)
-      follow = twitter_uids.any? ? ("follow=" + twitter_uids.merge(", ")) : ""
+      follow = twitter_uids.any? ? ("follow=" + twitter_uids.join(", ")) : ""
       start('', :extra_stream_parameters => {:host => "sitestream.twitter.com", :path => "2b/site.json" + follow}, &block)
     end
 
