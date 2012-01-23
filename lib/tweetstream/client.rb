@@ -127,6 +127,12 @@ module TweetStream
       start('', :extra_stream_parameters => {:host => "userstream.twitter.com", :path => "/2/user.json"}, &block)
     end
 
+    # Make a call to the userstream api for currently authenticated user
+    def sitestream(twitter_uids = [], &block)
+      follow = twitter_uids.any? ? ("follow=" + twitter_uids.merge(", ")) : ""
+      start('', :extra_stream_parameters => {:host => "sitestream.twitter.com", :path => "2b/site.json" + follow}, &block)
+    end
+
     # Set a Proc to be run when a deletion notice is received
     # from the Twitter stream. For example:
     #
